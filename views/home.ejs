@@ -1,0 +1,473 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Qwertycoin | Master Nodes - [QWC]</title>
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Qwertycoin | Master Nodes - [QWC]" />
+    <meta property="og:description" content="Master Nodes of Qwertycoin QWC is a secure and anonymous cryptocurrency, built with a focus on privacy. Qwertycoin provides instant worldwide privacy protected transactions and untraceable encrypted messaging transfers, based on CryptoNote easily CPU mining and ASIC resistant."
+    />
+    <meta property="og:url" content="https://nodes.qwertycoin.org/" />
+    <meta property="og:site_name" content="Qwertycoin | Master Nodes - [QWC]" />
+    <meta property="og:image" content="https://qwertycoin.org/wp-content/uploads/2018/03/qwcnodesogimage.png" />
+    <meta property="og:image:secure_url" content="https://qwertycoin.org/wp-content/uploads/2018/03/qwcnodesogimage.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+    <link rel="icon" href="https://cdn.qwertycoin.org/images/icons/favicons/fav_nodes.png" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    html, body {
+    		height:100%;
+    		padding: 0;
+    		margin: 0;
+			background: rgba(14,14,14,1);
+			background: -moz-linear-gradient(45deg, rgba(14,14,14,1) 0%, rgba(44,62,80,1) 100%);
+			background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(14,14,14,1)), color-stop(100%, rgba(44,62,80,1)));
+			background: -webkit-linear-gradient(45deg, rgba(14,14,14,1) 0%, rgba(44,62,80,1) 100%);
+			background: -o-linear-gradient(45deg, rgba(14,14,14,1) 0%, rgba(44,62,80,1) 100%);
+			background: -ms-linear-gradient(45deg, rgba(14,14,14,1) 0%, rgba(44,62,80,1) 100%);
+			background: linear-gradient(45deg, rgba(14,14,14,1) 0%, rgba(44,62,80,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e0e0e', endColorstr='#2c3e50', GradientType=1 );
+    		font-family: 'Roboto', sans-serif;
+    		font-size: 14px;
+    		color: #ddd;
+            background-attachment: fixed;
+    	}
+
+    	#container {
+    		width:100%;
+    		height:100%;
+    		position: relative;
+    		z-index: 1;
+    	}
+
+    	#nodecount {
+    		background: transparent url('https://cdn.qwertycoin.org/images/press/logo/gold/logo-nodes.png') top left no-repeat;
+            background-size: contain;
+    		height: 64px;
+    		font-size: 14px;
+    		padding: 32px 0 0 95px;
+            width: 100%;
+    	}
+
+		/* for high resolution display */
+
+	    @media only screen and (min--moz-device-pixel-ratio: 2),
+
+	    only screen and (-o-min-device-pixel-ratio: 2/1),
+
+	    only screen and (-webkit-min-device-pixel-ratio: 2),
+
+	    only screen and (min-device-pixel-ratio: 2) {
+
+			#nodecount {
+	    		background: transparent url('https://cdn.qwertycoin.org/images/press/logo/gold/logo-nodes2x.png') top left no-repeat;
+				background-size: contain;
+	    		height: 64px;
+	    		font-size: 14px;
+	    	}
+
+	    }
+
+    	#nodecount #countag {
+    		color: #ddd;
+            text-align: right;
+    	}
+
+    	#menu {
+    		width: 100%;
+    		padding: 0 30px;
+    		float:left;
+    		z-index: 99;
+    		height: 100%;
+    	}
+
+        #map{
+            display: none;
+        }
+
+        /* Larger than mobile */
+        @media (min-width: 400px) {
+            #menu {
+        		width: 390px;
+        		padding: 0 30px;
+        		float:left;
+        		z-index: 99;
+        		height: 100%;
+        	}
+
+            #map {
+                display: block;
+        		float:left;
+        		width: calc(100% - 390px);
+        		height:100%;
+        		z-index: -3;
+                position:fixed !important;
+                position:absolute;
+                top:0;
+                right:0;
+                bottom:0;
+        	}
+        }
+
+    	#chart {
+    		float:left;
+    		width: 50%;
+    		font-size: 11px;
+    		overflow: visible;
+    		margin-right: 20px;
+    	}
+
+    	#chartinfo {
+    		float:left;
+    		width: calc(50% - 20px);
+    		font-size: 12px;
+            line-height: 16px;
+    	}
+
+        .readmore{
+            display: block;
+        }
+
+		#chartinfo a{
+			-webkit-transition: all 0.5s; /* Safari */
+			transition: all 0.5s;
+		}
+
+    	#footer {
+    		position: absolute;
+    		bottom: 0;
+    		padding-bottom: 20px;
+    	}
+
+    	.colleft20 {
+    		float:left;
+    		text-align: center;
+    		vertical-align: middle;
+    		font-size: 10px;
+    		width:18%;
+    		height: 41px;
+    		padding: 4px 0;
+    		overflow: hidden;
+    		margin:1% 1% 1% 1%;
+    		-webkit-border-radius: 4px;
+    		-moz-border-radius: 4px;
+    		border-radius: 4px;
+    	}
+
+    	.sep{
+    		display: block;
+    		height: 1px;
+    		border: 0;
+    		border-top: 1px solid rgba(255, 255, 255, 0.1);
+			background: transparent;
+    		margin: 15px 0;
+    		padding: 0;
+    	}
+
+    	.cat{
+    		color: #f1c40f;
+    		font-size: 16px;
+    		font-weight: bold;
+    		text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+    	}
+
+    	.table>thead>tr>th{
+			color: #f1c40f;
+    		font-size: 16px;
+    		font-weight: bold;
+    		text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+			border-bottom: none;
+    	}
+
+    	p{
+    		text-align: left;
+    	}
+
+    	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    		border-top: 0;
+    	}
+
+    	.num{
+    		font-size: 14px;
+    	}
+
+    	a:link,
+    	a:href{
+    		color: ##3498db;
+			-webkit-transition: all 0.5s; /* Safari */
+			transition: all 0.5s;
+    	}
+
+    	a:hover{
+    		color: #f1c40f;
+    		text-decoration: none;
+			-webkit-transition: all 0.5s; /* Safari */
+			transition: all 0.5s;
+    	}
+
+    	.footer{
+    		color: #bbb;
+    	}
+
+    	.footer a{
+    		margin-right: 10px;
+            margin-top: 6px;
+            display:  inline-block;
+            width: 90px;
+    	}
+
+        .nopad{
+            margin-top: 0px !important;
+        }
+
+        .port{
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .u-pull-right{
+            float: right;
+        }
+
+        .masternodes{
+            font-size: 15.3px;
+        }
+
+        .node,
+        .spacer{
+            margin: 15px 0;
+            .display: block;
+        }
+
+        #chartinfo strong{
+            display: block;
+        }
+
+        .leaflet-marker-icon,
+        .marker-cluster,
+        .marker-cluster-small,
+        .leaflet-zoom-animated,
+        .leaflet-interactive{
+            color: #222222;
+        }
+
+        .clear{
+            clear: both;
+        }
+</style>
+
+<body>
+<div id="container">
+        <!-- left column 30%-->
+        <div id="menu">
+            <br/><br/>
+            <div id="nodecount">
+                <div id="countag">An <strong>error</strong> occoured please reload</div>
+            </div>
+            <div class="menuwrapper">
+                <hr class="sep" />
+                <!--<div id="country-list"></div>-->
+                <strong class="cat">Countries</strong><br/><br/>
+                <div id="country-list"></div>
+                <br/><br/>
+                <div id="chart"></div>
+
+                <div id="chartinfo"><strong>Did you know?</strong><br />
+                    <p>With just a few clicks, you can run your own node in the Qwertycoin Network. While you support Qwertycoin you can earn QWC from Users who use your masternode as a Remote Daemon!<br/><br/><a href="https://github.com/qwertycoin-org/qwertycoin/wiki/C01.-Daemon-%7C-How-to-run-a-Qwertycoin-Masternode" title="Click here to get more informations" class="readmore"><b>Read more here &raquo;</b></a></div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="menuwrapper">
+                <hr class="sep" />
+                <!--<div id="country-list"></div>-->
+                <strong class="cat">Qwertycoin Masternodes</strong><br/>
+                <div class="masternodes">
+                    <div class="node">
+                        <span class="u-pull-right">as.qwertyno.de<span class="port">:8197</span></span>
+                        Asia<br />
+                    </div>
+                    <div class="node">
+                        <span class="u-pull-right">af.qwertyno.de<span class="port">:8197</span></span>
+                        Africa<br />
+                    </div>
+                    <div class="node">
+                        <span class="u-pull-right">an.qwertyno.de<span class="port">:8197</span></span>
+                        Antarctica<br />
+                    </div>
+                    <div class="node">
+                        <span class="u-pull-right">au.qwertyno.de<span class="port">:8197</span></span>
+                        Australia<br />
+                    </div>
+                    <div class="node">
+                        <span class="u-pull-right">eu.qwertyno.de<span class="port">:8197</span></span>
+                        Europe<br />
+                    </div>
+                    <div class="node">
+                        <span class="u-pull-right">sa.qwertyno.de<span class="port">:8197</span></span>
+                        South America<br />
+                    </div>
+                    <div class="node">
+                        <span class="u-pull-right">na.qwertyno.de<span class="port">:8197</span></span>
+                        North America<br />
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div class="footer">
+                <div class="sep"></div>
+                <span class="cat spacer">Join the <strong>Qwertycoin Community!</strong></span>
+                <br />
+                <a href="https://twitter.com/Qwertycoin_QWC" target="_blank"><i class="fab fa-twitter-square"></i > Twitter</a><a href="https://www.reddit.com/r/QWERTYCOIN/" target="_blank"><i class="fab fa-reddit"></i > Reddit</a><a href="https://discord.gg/U5amwCs" target="_blank"><i class="fab fa-discord"></i > Discord</a><br />
+                <a href="https://t.me/qwertycoin" target="_blank"><i class="fab fa-telegram"></i> Telegram</a><a href="https://bitcointalk.org/index.php?topic=2881418.0" target="_blank"><i class="fab fa-bitcoin"></i> BTC Talk
+		<a href="https://www.facebook.com/Qwertycoin-422694361519282/" target="_blank"><i class="fab fa-facebook-square"></i> Facebook</a>
+                <br />
+                <div class="sep"></div>
+                <br />
+                All rights reserved. | Sourcecode: <a href="https://github.com/qwertycoin-org/qwertycoin-nodes-map" target="_blank">GitHub</a><br />
+                Copyright &copy; 2017 &mdash; 2019 <a href="https://qwertycoin.org">Qwertycoin.org</a>
+            </div>
+        </div>
+        <!-- Show nodes on map -->
+        <div id="map"></div>
+ <!-- footer -->
+
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.2.0/dist/leaflet.markercluster.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+const locations = <%- locations %>;
+var countNodes = 0;
+
+const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 18,
+attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Points &copy 2019 Qwertycoin'
+});
+
+const map = L.map('map', {layers: [tiles]});
+
+const locationsToCount = {};
+
+const markers = L.markerClusterGroup();
+locations.forEach((ip) => {
+	if (locationsToCount[ip.country_name]) {
+		locationsToCount[ip.country_name]++;
+	} else {
+		locationsToCount[ip.country_name] = 1;
+	}
+	countNodes++;
+	markers.addLayer(L.marker([ip.latitude, ip.longitude]));
+});
+//locations.forEach((value) => {
+//  console.log(value);
+//});
+map.addLayer(markers);
+map.fitWorld().zoomIn();
+
+const locationsArray = Object.keys(locationsToCount).map(k => [k, locationsToCount[k]]);
+
+function precisionRound(number, precision) {
+var factor = Math.pow(10, precision);
+return Math.round(number * factor) / factor;
+}
+
+	const renderCountries = () => {
+
+	// shows current nodes
+	document.getElementById('countag').innerHTML = '<strong>' + numberWithCommas(countNodes) + ' nodes</strong> and counting...';
+
+	var output = "";
+	var locationsArrayNames = "";
+	var showCurrentCountries = 0;
+	var colors = ["#3366cc", "#dc3912", "#ff9900","#109618","#990099","#0099c6","#dd4477","#66aa00","#b82e2e","#316395","#994499","#22aa99","#aaaa11","#6633cc","#e67300"];
+
+	// sort location asc 100 > 90 > 80
+	locationsArray.sort((a, b) => b[1] - a[1]);
+
+	nameArray = locationsArray.reduce((a, v) => a += v[0],'');
+	countArray = locationsArray.reduce((a, v) => a += v[1],'');
+
+	if(countArray.length < colors.length) {
+	showCurrentCountries = countArray.length;
+	} else {
+	showCurrentCountries = colors.length;
+	}
+
+	function showCountriesList() {
+	for(i = 0; i < showCurrentCountries; i++) {
+	//console.log(locationsArray[i][0]); // Country
+	//console.log(locationsArray[i][1]); // Count
+
+	if(locationsArray[i][0] == "Republic of Korea") {
+	locationsArrayNames = "Korea";
+	} else if(locationsArray[i][0] == "United Kingdom") {
+	locationsArrayNames = "UK";
+	} else if(locationsArray[i][0] == "United States") {
+	locationsArrayNames = "USA";
+	} else {
+	locationsArrayNames = locationsArray[i][0];
+	}
+
+	output += "<div title='"+locationsArrayNames+"\n"+locationsArray[i][1]+" ("+ precisionRound((locationsArray[i][1]*100/countNodes),1)+"%)' class='colleft20' style='background:"+colors[i]+"'><strong class='num'> "+ locationsArray[i][1]+ "</strong><br />" +locationsArrayNames+" </div>";
+	if(i == 4 || i == 9 || i == 14) {
+	output += "<div style='clear:both'></div>";
+	}
+	}
+	return(output);
+	}
+
+	// show something
+	document.querySelector('#country-list').innerHTML = showCountriesList();
+}
+
+google.charts.load('current', {'packages': ['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+const data = google.visualization.arrayToDataTable([['Task', 'Hours per Day']].concat(locationsArray));
+
+const options = {
+backgroundColor: 'transparent',
+chartArea: {left: 0, top: 0, width: "100%", height: '100%'},
+legend: {position: 'none'},
+pieHole: 0.1,
+};
+
+const chart = new google.visualization.PieChart(document.getElementById('chart'));
+chart.draw(data, options);
+}
+
+
+const numberWithCommas = (x) => {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+renderCountries();
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113295456-7"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-113295456-7');
+</script>
+</body>
+</html>

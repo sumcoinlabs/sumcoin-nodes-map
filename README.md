@@ -8,23 +8,33 @@
 Visualizes Sumcoin nodes on the map.
 
 ## What you need
+
 You need a running sumcoind on the same system on Port 3333 or change line 8
 in location.js
 
 ## How to run
-install and run freegeoip
+
+* install and run freegeoip
 ```
-cd ~
-wget https://github.com/fiorix/freegeoip/releases/download/v3.2/freegeoip-3.2-linux-amd64.tar.gz
+cd ~ wget https://github.com/fiorix/freegeoip/releases/download/v3.2/freegeoip-3.2-linux-amd64.tar.gz
+```
+```
 tar xvfz freegeoip-3.2-linux-amd64.tar.gz
+```
+```
 cd freegeoip-3.2-linux-amd64
+```
+```
 chmod +x freegeoip
+```
+```
 ./freegeoip --quota-max 0
 ```
-and run
+## Run
 `npm i`
 `sudo node app.js`
-Open http://your-website.com:3333.
+
+## Open http://your-website.com:3333.
 
 It's caching nodes' ips every 24 hrs into `.cache` folder.
 
@@ -34,4 +44,4 @@ It's caching nodes' ips every 24 hrs into `.cache` folder.
 
 #### Thanks
 
-Cryptonote Developers, Bytecoin Developers, Monero Developers, Karbo Developers, Qwertycoin Community, SumcoinLabs
+SumcoinLabs

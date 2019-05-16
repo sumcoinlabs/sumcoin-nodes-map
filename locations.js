@@ -5,7 +5,7 @@ const cache = new CachemanFile({tmpDir: '.cache', ttl: 24*3600,});
 
 const getPeers = async () => {
     try {
-        const res = await axios.get('http://127.0.0.1:8197/peers');
+        const res = await axios.get('http://127.0.0.1:3333/peers');
         if (!res.data.peers) throw new Error('Missing peers.');
         console.log(`${res.data.peers.length} peers found`);
         return res.data.peers;
@@ -21,7 +21,7 @@ const getLocation = async (ip) => new Promise((resolve) => {
             return resolve(value);
         }
         try {
-            const res = await axios.get(`http://127.0.0.1:8080/json/${ip}`);
+            const res = await axios.get(`http://127.0.0.1:3333/json/${ip}`);
             cache.set(ip, res.data, 24*3600);
             resolve(res.data);
         } catch (e) {

@@ -21,7 +21,7 @@ git clone https://github.com/sumcoinlabs/sumcoin-nodes-map.git
 
 ## Get Free GEO IP (this populates IP data)
 
-* install and run freegeoip
+* install and run freegeoip   *Source https://github.com/fiorix/freegeoip
 ```
 cd ~ wget https://github.com/fiorix/freegeoip/releases/download/v3.2/freegeoip-3.2-linux-amd64.tar.gz
 ```

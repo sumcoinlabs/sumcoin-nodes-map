@@ -9,10 +9,17 @@ Visualizes Sumcoin nodes on the map.
 
 ## What you need
 
-You need a running sumcoind on the same system on Port 3333 or change line 8
-in location.js
+Sumcoind
 
-## How to run
+You need a running sumcoind on the same system you want to run sumcoin-nodes-map on Port 3333 
+
+## Clone the repo:
+
+```
+git clone https://github.com/sumcoinlabs/sumcoin-nodes-map.git
+```
+
+## Get Free GEO IP (this populates IP data)
 
 * install and run freegeoip
 ```
@@ -30,13 +37,18 @@ chmod +x freegeoip
 ```
 ./freegeoip --quota-max 0
 ```
-## Run
-`npm i`
-`sudo node app.js`
+## Get Node
+```
+npm i
+```
+## To Run
+```
+sudo node app.js`
+```
 
 ## Open http://your-website.com:3333.
 
-It's caching nodes' ips every 24 hrs into `.cache` folder.
+It's caching Sumcoin Node IP's every 24 hrs into `.cache` folder.
 
 ![Map](https://cdn.qwertycoin.org/images/other/qwcnodesogimage.png)
 		

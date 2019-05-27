@@ -11,7 +11,7 @@ Visualizes Sumcoin nodes on the map.
 
 Sumcoind
 
-You need a running sumcoind on the same system you want to run sumcoin-nodes-map on Port 3333 
+You need a running sumcoind on the same system you want to run sumcoin-nodes-map on Port 3332 
 
 ## Clone the repo:
 
@@ -46,7 +46,7 @@ npm i
 sudo node app.js`
 ```
 
-## Open http://your-website.com:3333.
+## Open http://your-website.com. (default port is 80)
 
 It's caching Sumcoin Node IP's every 24 hrs into `.cache` folder.
 

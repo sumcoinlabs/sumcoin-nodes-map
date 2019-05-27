@@ -5,10 +5,16 @@ const cache = new CachemanFile({tmpDir: '.cache', ttl: 24*3600,});
 
 const getPeers = async () => {
     try {
-        const res = await axios.get('http://127.0.0.1:3333/peers');
-        if (!res.data.peers) throw new Error('Missing peers.');
-        console.log(`${res.data.peers.length} peers found`);
-        return res.data.peers;
+		params = {
+        "method": "getpeerinfo",
+		"params": [],
+		"id": "foo"
+      }
+        const res = await axios.post('http://user:password@127.0.0.1:3332/', params);
+		//console.log(res.data.result);
+        if (!res.data.result) throw new Error('Missing peers.');
+        console.log(`${res.data.result.length} peers found`);
+        return res.data.result;
     } catch (e) {
         console.log('Can\'t get peers');
         throw e;
@@ -21,7 +27,7 @@ const getLocation = async (ip) => new Promise((resolve) => {
             return resolve(value);
         }
         try {
-            const res = await axios.get(`http://127.0.0.1:3333/json/${ip}`);
+            const res = await axios.get(`http://127.0.0.1:8080/json/${ip}`);
             cache.set(ip, res.data, 24*3600);
             resolve(res.data);
         } catch (e) {
@@ -31,8 +37,8 @@ const getLocation = async (ip) => new Promise((resolve) => {
 });
 
 const getLocations = async () => {
-    return getPeers().then(peers => Promise.all(peers.map(peer => {
-        const [ip, ] = peer.split(':');
+    return getPeers().then(result => Promise.all(result.map(result => {
+        const [ip, ] = result.addr.split(':');
         return getLocation(ip);
     })));
 };

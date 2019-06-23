@@ -50,7 +50,7 @@ sudo node app.js`
 
 It's caching Sumcoin Node IP's every 24 hrs into `.cache` folder.
 
-![Map](https://cdn.qwertycoin.org/images/other/qwcnodesogimage.png)
+![Map](https://github.com/sumcoinlabs/sumcoin-nodes-map/images/Sumcoin-map.png)
 		
 
 

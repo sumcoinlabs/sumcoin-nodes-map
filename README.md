@@ -1,6 +1,6 @@
-![image](https://avatars3.githubusercontent.com/u/37975862?s=460&v=4)
+![image](https://miningpoolstats.stream/ico/sumcoin.png)
 #### Master Build Status
-[![Build Status](https://travis-ci.org/qwertycoin-org/qwertycoin-nodes-map.svg?branch=master)](https://travis-ci.org/qwertycoin-org/qwertycoin-nodes-map) [![Build status](https://ci.appveyor.com/api/projects/status/78ot0ppti2e16ur9/branch/master?svg=true)](https://ci.appveyor.com/project/Qwertycoin/qwertycoin-nodes-map/branch/master)
+[![Build Status](https://travis-ci.org/sumcoinlabs/sumcoin-nodes-map.svg?branch=master)](https://travis-ci.org/sumcoinlabs/sumcoin-nodes-map) [![Build status]
 
 
 # Sumcoin nodes map

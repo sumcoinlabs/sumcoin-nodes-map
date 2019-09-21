@@ -1,6 +1,4 @@
 ![image](https://miningpoolstats.stream/ico/sumcoin.png)
-#### Master Build Status
-[![Build Status](https://travis-ci.org/sumcoinlabs/sumcoin-nodes-map.svg?branch=master)](https://travis-ci.org/sumcoinlabs/sumcoin-nodes-map) [![Build status]
 
 
 # Sumcoin nodes map
@@ -50,8 +48,8 @@ sudo node app.js`
 
 It's caching Sumcoin Node IP's every 24 hrs into `.cache` folder.
 
-![Map](https://raw.githubusercontent.com/sumcoinlabs/sumcoin-nodes-map/master/images/Sumcoin-map.png)
-		
+
+![Map](https://user-images.githubusercontent.com/37975862/65371105-6baa5c80-dc1d-11e9-8f84-1d11747dbb8c.png)		
 
 
 #### Thanks

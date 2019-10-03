@@ -49,7 +49,7 @@ sudo node app.js`
 It's caching Sumcoin Node IP's every 24 hrs into `.cache` folder.
 
 
-![Map](https://user-images.githubusercontent.com/37975862/65430885-e0c09200-ddd5-11e9-99f3-d4059c825d69.png)
+![Map](https://user-images.githubusercontent.com/51257210/66169341-4ba37180-e5fd-11e9-9069-24eae46dc2b6.png)
 		
 
 

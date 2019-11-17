@@ -44,6 +44,12 @@ npm i
 sudo node app.js`
 ```
 
+## TMUX Session Option
+* Create tmux session named freegeoip
+* Start using 
+```
+./freegeoip --quota-max 0
+```
 ## Open http://your-website.com. (default port is 80)
 
 It's caching Sumcoin Node IP's every 24 hrs into `.cache` folder.

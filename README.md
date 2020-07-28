@@ -17,7 +17,7 @@ You need a running sumcoind on the same system you want to run sumcoin-nodes-map
 
 * install and run freegeoip   *Source https://github.com/fiorix/freegeoip
 ```
-cd ~ wget https://github.com/fiorix/freegeoip/releases/download/v3.4.1/freegeoip-3.4.1-linux-amd64.tar.gz
+wget https://github.com/fiorix/freegeoip/releases/download/v3.4.1/freegeoip-3.4.1-linux-amd64.tar.gz
 ```
 ```
 tar xvfz freegeoip-3.4.1-linux-amd64.tar.gz

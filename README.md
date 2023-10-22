@@ -3,41 +3,19 @@
 
 # Sumcoin nodes map
 
-Visualizes Sumcoin nodes on the map.
+Visualizes Sumcoin nodes, mobile wallets and other user opt in data on the map.
+
+Tested on Ubuntu 20
+Requires Node v14 or higher
 
 ## What you need
 
-Sumcoind
+### Sumcoind
 
 You need a running sumcoind on the same system you want to run sumcoin-nodes-map on Port 3332 
 
 
 
-## Get Free GEO IP (this populates IP data)
-
-* install and run freegeoip   *Source https://github.com/fiorix/freegeoip
-```
-wget https://github.com/fiorix/freegeoip/releases/download/v3.4.1/freegeoip-3.4.1-linux-amd64.tar.gz
-```
-```
-tar xvfz freegeoip-3.4.1-linux-amd64.tar.gz
-```
-```
-cd freegeoip-3.4.1-linux-amd64
-```
-```
-chmod +x freegeoip
-```
-```
-./freegeoip --quota-max 0
-```
-
-## TMUX Session Option to run freegeoip
-* Create tmux session named freegeoip
-* Start using 
-```
-./freegeoip --quota-max 0
-```
 ## Open http://your-website.com. (default port is 80)
 
 It's caching Sumcoin Node IP's every 24 hrs into `.cache` folder.
@@ -57,7 +35,7 @@ npm i
 ```
 ## To test run - (still in your sumcoin-nodes-map dir_
 ```
-sudo node app.js
+node app.js
 ```
 ## Run using forever
 ```
